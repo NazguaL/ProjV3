@@ -1,5 +1,6 @@
 package pages;
 
+import libs.ActionsWithWebElements;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,10 +11,11 @@ import org.openqa.selenium.WebDriver;
 public class LoginPage {
     WebDriver driver;
     Logger log;
+    ActionsWithWebElements actionsWithWebElements = new ActionsWithWebElements(driver);
 
     String loginNameInputXpath = "//*[@name='_username']";
     //String loginNameInputName = "_username";
-    By loginNameInput = By.name("_username");
+    By loginNameInput = By.xpath("//*[@name='_username']");
 
     String loginPassInputXpath = ".//*[@id='password']";
     String loginPassInputId = "password";
@@ -40,18 +42,9 @@ public class LoginPage {
         }
     }
 
-    public void InputLogin (String login)
+    public void InputLogin ()
     {
-        try
-        {
-            driver.findElement(loginNameInput).clear();
-            driver.findElement(loginNameInput).sendKeys(login);
-            log.trace("Login is field");
-        }
-        catch (Exception e)
-        {
-            log.error("Can not field ");
-        }
+        actionsWithWebElements.InputToTextField(loginNameInput, "Student");
     }
 
     public void InputPass (String pass)
