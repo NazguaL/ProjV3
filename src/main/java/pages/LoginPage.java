@@ -11,7 +11,7 @@ import org.openqa.selenium.WebDriver;
 public class LoginPage {
     WebDriver driver;
     Logger log;
-    ActionsWithWebElements actionsWithWebElements = new ActionsWithWebElements(driver);
+    ActionsWithWebElements actionsWithWebElements;
 
     String loginNameInputXpath = "//*[@name='_username']";
     //String loginNameInputName = "_username";
@@ -44,7 +44,8 @@ public class LoginPage {
 
     public void InputLogin ()
     {
-        actionsWithWebElements.InputToTextField(loginNameInput, "Student");
+        actionsWithWebElements = new ActionsWithWebElements(driver);
+        actionsWithWebElements.InputToTextField(loginNameInputXpath, "Student");
     }
 
     public void InputPass (String pass)

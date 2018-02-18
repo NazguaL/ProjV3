@@ -18,12 +18,12 @@ public class ActionsWithWebElements
         log = Logger.getLogger(getClass());
     }
 
-    public void InputToTextField(By element, String value)
+    public void InputToTextField(String element, String value)
     {
         try
         {
-            driver.findElement(element).clear();
-            driver.findElement(element).sendKeys(value);
+            driver.findElement(By.xpath(element)).clear();
+            driver.findElement(By.xpath(element)).sendKeys(value);
             log.trace(value + " is inputed to " + element);
         }
         catch (Exception ex)
