@@ -1,6 +1,9 @@
 package pages;
 
+import libs.ActionsWithWebElements;
+import libs.ExceptionHelper;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 /**
@@ -10,7 +13,10 @@ public class HomePage
 {
     WebDriver driver;
     Logger log;
-    String TitleLogo = "//a[@class='logo']";
+    ActionsWithWebElements actionsWithWebElements;
+    ExceptionHelper exceptionHelper;
+    /*Locators:*/
+    By TitleLogo = By.xpath("//a[@class='logo']");
 
     public HomePage (WebDriver driver)
     {

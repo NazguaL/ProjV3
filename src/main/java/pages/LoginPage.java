@@ -14,12 +14,12 @@ public class LoginPage {
     Logger log;
     ActionsWithWebElements actionsWithWebElements;
     ExceptionHelper exceptionHelper;
-
+    /*Locators:*/
     By loginNameInput = By.xpath("//*[@name='_username']");
     By loginPassInput = By.xpath(".//*[@id='password']");
+    //String loginSubmitButtonInputXpath = "//*[@type='submit']";
+    By loginSubmitButtonInput = By.xpath("//*[@type='submit']");
 
-    String loginSubmitButtonInputXpath = "//*[@type='submit']";
-    //String loginSubmitButtonInputType = "submit";
 
     public LoginPage (WebDriver driver)
     {
@@ -42,11 +42,11 @@ public class LoginPage {
         }
     }
 
-    public void InputLogin ()
+    public void InputLogin (String login)
     {
         try
         {
-            actionsWithWebElements.InputToTextField(loginNameInput, "Student");
+            actionsWithWebElements.InputToTextField(loginNameInput, login);
         } catch (Exception e)
         {
             exceptionHelper.ExceptionLogger("Can not fill login!", e);
@@ -57,7 +57,7 @@ public class LoginPage {
     {
         try
         {
-            actionsWithWebElements.InputToTextField(loginPassInput, "909090");
+            actionsWithWebElements.InputToTextField(loginPassInput, pass);
         } catch (Exception e)
         {
             exceptionHelper.ExceptionLogger("Can not fill password!", e);
@@ -68,7 +68,7 @@ public class LoginPage {
     {
         try
         {
-            driver.findElement(By.xpath(loginSubmitButtonInputXpath)).click();
+            actionsWithWebElements.ClickOnButton(loginSubmitButtonInput);
         } catch (Exception e)
         {
             exceptionHelper.ExceptionLogger("Can not click on \"Submit\" button!", e);
