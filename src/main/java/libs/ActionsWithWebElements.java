@@ -32,31 +32,44 @@ public class ActionsWithWebElements
         log.trace("Clicked on button: " + button);
     }
 
-    public void CheckACheckbox (By checkbox) throws Exception
+    public void SelectACheckbox (By checkbox) throws Exception
     {
         // isSelected() http://selftechy.com/2011/07/23/selenium-2-0-webdriver-some-useful-apis
         WebElement cancheck = driver.findElement(checkbox);
         if (!cancheck.isSelected())
         {
             cancheck.click();
-            log.trace("Check a checkbox: " + checkbox);
+            log.trace("Select a checkbox: " + checkbox);
         }
     }
 
-    public void UnheckACheckbox (By checkbox) throws Exception
+    public void UnSelectACheckbox (By checkbox) throws Exception
     {
         WebElement cancheck = driver.findElement(checkbox);
         if (cancheck.isSelected())
         {
             cancheck.click();
-            log.trace("Uncheck a checkbox: " + checkbox);
+            log.trace("UnSelect a checkbox: " + checkbox);
         }
     }
 
     public boolean IsACheckboxSelected (By checkbox) throws Exception
     {
         WebElement cancheck = driver.findElement(checkbox);
-        log.trace("checkbox: " + checkbox + "IsSelected: " + cancheck.isSelected());
+        log.trace("Checkbox: " + checkbox + "IsSelected: " + cancheck.isSelected());
+        return cancheck.isSelected();
+    }
+
+    public void SelectARadiobutton (By radiobutton) throws Exception
+    {
+        driver.findElement(radiobutton).click();
+        log.trace("Select a Radiobutton: " + radiobutton);
+    }
+
+    public boolean IsARadiobuttonSelected (By radiobutton) throws Exception
+    {
+        WebElement cancheck = driver.findElement(radiobutton);
+        log.trace("radiobutton: " + radiobutton + "IsSelected: " + cancheck.isSelected());
         return cancheck.isSelected();
     }
 
