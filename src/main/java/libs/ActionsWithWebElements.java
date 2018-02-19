@@ -18,18 +18,11 @@ public class ActionsWithWebElements
         log = Logger.getLogger(getClass());
     }
 
-    public void InputToTextField(By element, String value)
+    public void InputToTextField(By element, String value) throws Exception
     {
-        try
-        {
             driver.findElement(element).clear();
             driver.findElement(element).sendKeys(value);
-            log.trace(value + " is inputed to " + element);
-        }
-        catch (Exception ex)
-        {
-            log.error("Login doesn't input " + ex);
-        }
+            log.trace(value + " is filled to element:" + element);
     }
 
 

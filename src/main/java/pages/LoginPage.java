@@ -1,6 +1,7 @@
 package pages;
 
 import libs.ActionsWithWebElements;
+import libs.ExceptionHelper;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -12,6 +13,7 @@ public class LoginPage {
     WebDriver driver;
     Logger log;
     ActionsWithWebElements actionsWithWebElements;
+    ExceptionHelper exceptionHelper;
 
     By loginNameInput = By.xpath("//*[@name='_username']");
     By loginPassInput = By.xpath(".//*[@id='password']");
@@ -24,6 +26,7 @@ public class LoginPage {
         this.driver = driver;
         log = Logger.getLogger(getClass());
         actionsWithWebElements = new ActionsWithWebElements(driver);
+        exceptionHelper = new ExceptionHelper();
     }
 
     public void OpenLoginPage (String link)
@@ -35,9 +38,7 @@ public class LoginPage {
         }
         catch (Exception e)
         {
-            log.error("Can not open login page!");
-            String stackTrace = org.apache.commons.lang.exception.ExceptionUtils.getStackTrace(e);
-            log.error("Exception:" + stackTrace);
+            exceptionHelper.ExceptionLogger("Can not open login page!", e);
         }
     }
 
@@ -48,9 +49,7 @@ public class LoginPage {
             actionsWithWebElements.InputToTextField(loginNameInput, "Student");
         } catch (Exception e)
         {
-            log.error("Can not fill login!");
-            String stackTrace = org.apache.commons.lang.exception.ExceptionUtils.getStackTrace(e);
-            log.error("Exception:" + stackTrace);
+            exceptionHelper.ExceptionLogger("Can not fill login!", e);
         }
     }
 
@@ -61,9 +60,7 @@ public class LoginPage {
             actionsWithWebElements.InputToTextField(loginPassInput, "909090");
         } catch (Exception e)
         {
-            log.error("Can not fill login!");
-            String stackTrace = org.apache.commons.lang.exception.ExceptionUtils.getStackTrace(e);
-            log.error("Exception:" + stackTrace);
+            exceptionHelper.ExceptionLogger("Can not fill password!", e);
         }
     }
 
@@ -74,9 +71,7 @@ public class LoginPage {
             driver.findElement(By.xpath(loginSubmitButtonInputXpath)).click();
         } catch (Exception e)
         {
-            log.error("Can not click on \"Submit\" button!");
-            String stackTrace = org.apache.commons.lang.exception.ExceptionUtils.getStackTrace(e);
-            log.error("Exception:" + stackTrace);
+            exceptionHelper.ExceptionLogger("Can not click on \"Submit\" button!", e);
         }
     }
 }
