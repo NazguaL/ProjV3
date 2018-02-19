@@ -48,7 +48,7 @@ public class PositiveLogin
     @After
     public void CloseDriver ()
     {
-       // driver.quit();
+        driver.quit();
     }
 
 }

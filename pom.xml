@@ -48,6 +48,12 @@
             <version>2.20.1</version>
             <type>maven-plugin</type>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.7</version>
+        </dependency>
     </dependencies>
     <build>
         <resources>

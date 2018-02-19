@@ -13,12 +13,8 @@ public class LoginPage {
     Logger log;
     ActionsWithWebElements actionsWithWebElements;
 
-    String loginNameInputXpath = "//*[@name='_username']";
-    //String loginNameInputName = "_username";
     By loginNameInput = By.xpath("//*[@name='_username']");
-
-    String loginPassInputXpath = ".//*[@id='password']";
-    String loginPassInputId = "password";
+    By loginPassInput = By.xpath(".//*[@id='password']");
 
     String loginSubmitButtonInputXpath = "//*[@type='submit']";
     //String loginSubmitButtonInputType = "submit";
@@ -27,6 +23,7 @@ public class LoginPage {
     {
         this.driver = driver;
         log = Logger.getLogger(getClass());
+        actionsWithWebElements = new ActionsWithWebElements(driver);
     }
 
     public void OpenLoginPage (String link)
@@ -36,26 +33,50 @@ public class LoginPage {
             driver.get(link);
             log.trace("Page is opened");
         }
-        catch (Exception ex)
+        catch (Exception e)
         {
-            log.error("Can not open login page");
+            log.error("Can not open login page!");
+            String stackTrace = org.apache.commons.lang.exception.ExceptionUtils.getStackTrace(e);
+            log.error("Exception:" + stackTrace);
         }
     }
 
     public void InputLogin ()
     {
-        actionsWithWebElements = new ActionsWithWebElements(driver);
-        actionsWithWebElements.InputToTextField(loginNameInputXpath, "Student");
+        try
+        {
+            actionsWithWebElements.InputToTextField(loginNameInput, "Student");
+        } catch (Exception e)
+        {
+            log.error("Can not fill login!");
+            String stackTrace = org.apache.commons.lang.exception.ExceptionUtils.getStackTrace(e);
+            log.error("Exception:" + stackTrace);
+        }
     }
 
     public void InputPass (String pass)
     {
-        driver.findElement(By.id(loginPassInputId)).clear();
-        driver.findElement(By.id(loginPassInputId)).sendKeys(pass);
+        try
+        {
+            actionsWithWebElements.InputToTextField(loginPassInput, "909090");
+        } catch (Exception e)
+        {
+            log.error("Can not fill login!");
+            String stackTrace = org.apache.commons.lang.exception.ExceptionUtils.getStackTrace(e);
+            log.error("Exception:" + stackTrace);
+        }
     }
 
     public void ClickSubmitButton ()
     {
-        driver.findElement(By.xpath(loginSubmitButtonInputXpath)).click();
+        try
+        {
+            driver.findElement(By.xpath(loginSubmitButtonInputXpath)).click();
+        } catch (Exception e)
+        {
+            log.error("Can not click on \"Submit\" button!");
+            String stackTrace = org.apache.commons.lang.exception.ExceptionUtils.getStackTrace(e);
+            log.error("Exception:" + stackTrace);
+        }
     }
 }
