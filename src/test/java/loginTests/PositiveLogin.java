@@ -42,7 +42,7 @@ public class PositiveLogin
     @Test
     public void ValidLogin ()
     {
-        loginPage.OpenLoginPage("http://v3333.qalight.com.ua/login");
+        loginPage.OpenLoginPage("http://v3.qalight.com.ua/login");
         loginPage.InputLogin("Student");
         loginPage.InputPass("909090");
         loginPage.ClickSubmitButton();
