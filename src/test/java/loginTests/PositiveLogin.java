@@ -1,5 +1,6 @@
 package loginTests;
 
+import libs.DriverInitiator;
 import libs.ExceptionHelper;
 import org.apache.log4j.Logger;
 import org.junit.After;
@@ -24,16 +25,19 @@ public class PositiveLogin
     Logger log;
     LoginPage loginPage;
     ExceptionHelper exceptionHelper;
+    DriverInitiator driverInitiator;
 
     @Before
     public void Setup ()
     {
         //File fileFF = new File("./drivers/chromedriver.exe");
         //System.setProperty("webdriver.chrome.driver", fileFF.getAbsolutePath());
-        driver = new ChromeDriver();
+        //driver = new ChromeDriver();
         //wait = new WebDriverWait(driver, 10);
+        driverInitiator = new DriverInitiator();
+        this.driver = driverInitiator.StartCromeDriver();
         log = Logger.getLogger(getClass());
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         loginPage = new LoginPage(driver);
         exceptionHelper = new ExceptionHelper();
         // homePage = new HomePage(driver);

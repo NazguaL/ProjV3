@@ -69,7 +69,7 @@ public class ActionsWithWebElements
     public boolean IsARadiobuttonSelected (By radiobutton) throws Exception
     {
         WebElement cancheck = driver.findElement(radiobutton);
-        log.trace("radiobutton: " + radiobutton + "IsSelected: " + cancheck.isSelected());
+        log.trace("radiobutton: " + radiobutton + " IsSelected: " + cancheck.isSelected());
         return cancheck.isSelected();
     }
 
