@@ -3,6 +3,7 @@ package pages;
 import libs.ActionsWithWebElements;
 import libs.ExceptionHelper;
 import org.apache.log4j.Logger;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -22,6 +23,13 @@ public class HomePage
     {
         this.driver = driver;
         log = Logger.getLogger(getClass());
+        actionsWithWebElements = new ActionsWithWebElements(driver);
+    }
+
+    public void CompareTitle (String expectedTitle)
+    {
+        String actualTitle = actionsWithWebElements.Title();
+        Assert.assertEquals(actualTitle, expectedTitle);
     }
 
 }

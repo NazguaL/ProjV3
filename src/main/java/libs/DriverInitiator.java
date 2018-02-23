@@ -3,6 +3,8 @@ package libs;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.concurrent.TimeUnit;
 
@@ -22,5 +24,14 @@ public class DriverInitiator
         return driver;
     }
 
+    public WebDriver StartFirefoxDriver ()
+    {
+        DesiredCapabilities caps = new DesiredCapabilities();
+        caps.setCapability(FirefoxDriver.MARIONETTE, false);
+        WebDriver driver = new FirefoxDriver(caps);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        log.trace("FirefoxDriver initiated.");
+        return driver;
+    }
 
 }

@@ -19,7 +19,14 @@ public class ActionsWithWebElements
         log = Logger.getLogger(getClass());
     }
 
-    public void InputToTextField(By element, String value) throws Exception
+    public String Title ()
+    {
+        String title =  driver.getTitle();
+        log.trace("Title is: " + title);
+        return title;
+    }
+
+    public void InputToTextField (By element, String value) throws Exception
     {
         driver.findElement(element).clear();
         driver.findElement(element).sendKeys(value);

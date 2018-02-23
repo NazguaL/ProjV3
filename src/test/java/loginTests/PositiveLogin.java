@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.HomePage;
 import pages.LoginPage;
 
 // import java.io.File;
@@ -24,6 +25,7 @@ public class PositiveLogin
     //WebDriverWait wait;
     Logger log;
     LoginPage loginPage;
+    HomePage homePage;
     ExceptionHelper exceptionHelper;
     DriverInitiator driverInitiator;
 
@@ -40,7 +42,7 @@ public class PositiveLogin
         //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         loginPage = new LoginPage(driver);
         exceptionHelper = new ExceptionHelper();
-        // homePage = new HomePage(driver);
+        homePage = new HomePage(driver);
     }
 
     @Test
@@ -52,8 +54,9 @@ public class PositiveLogin
         loginPage.ClickSubmitButton();
         log.trace(driver.getTitle());
         String expectedTitle = "Учет запчастей";
-        Assert.assertEquals(driver.getTitle(), expectedTitle);
+        homePage.CompareTitle(expectedTitle);
     }
+
 
     @After
     public void CloseDriver ()
