@@ -9,11 +9,9 @@ import org.openqa.selenium.WebDriver;
 /**
  * Created by User on 18.02.2018.
  */
-public class LoginPage {
-    WebDriver driver;
-    Logger log;
-    ActionsWithWebElements actionsWithWebElements;
-    ExceptionHelper exceptionHelper;
+public class LoginPage extends ParentPage
+{
+
     /*Locators:*/
     By loginNameInput = By.xpath("//*[@name='_username']");
     By loginPassInput = By.xpath(".//*[@id='password']");
