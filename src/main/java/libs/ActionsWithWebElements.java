@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 /**
  * Created by User on 18.02.2018.
@@ -26,35 +27,31 @@ public class ActionsWithWebElements
         return title;
     }
 
-    public void InputToTextField (By element, String value) throws Exception
+    public void InputToTextField (WebElement element, String value) throws Exception
     {
-        driver.findElement(element).clear();
-        driver.findElement(element).sendKeys(value);
+        element.clear();
+        element.sendKeys(value);
         log.trace(value + " is filled to element: " + element);
     }
 
-    public void ClickOnButton (By button) throws Exception
+    public void ClickOnButton (WebElement button) throws Exception
     {
-        driver.findElement(button).click();
+        button.click();
         log.trace("Clicked on button: " + button);
     }
 
-    public void SelectACheckbox (By checkbox) throws Exception
-    {
+    public void SelectACheckbox(By checkbox) throws Exception {
         // isSelected() http://selftechy.com/2011/07/23/selenium-2-0-webdriver-some-useful-apis
         WebElement cancheck = driver.findElement(checkbox);
-        if (!cancheck.isSelected())
-        {
+        if (!cancheck.isSelected()) {
             cancheck.click();
             log.trace("Select a checkbox: " + checkbox);
         }
     }
 
-    public void UnSelectACheckbox (By checkbox) throws Exception
-    {
+    public void UnSelectACheckbox(By checkbox) throws Exception {
         WebElement cancheck = driver.findElement(checkbox);
-        if (cancheck.isSelected())
-        {
+        if (cancheck.isSelected()) {
             cancheck.click();
             log.trace("UnSelect a checkbox: " + checkbox);
         }
@@ -78,6 +75,18 @@ public class ActionsWithWebElements
         WebElement cancheck = driver.findElement(radiobutton);
         log.trace("radiobutton: " + radiobutton + " IsSelected: " + cancheck.isSelected());
         return cancheck.isSelected();
+    }
+
+    public boolean IsElementPresent (WebElement element)
+    {
+        return element.isDisplayed() && element.isEnabled();
+    }
+
+    public void SelectItemFromDropDownByVisibleElement (WebElement elementDD, String textForSelect)
+    {
+        Select optionFromDD = new Select(elementDD);
+        optionFromDD.deselectByVisibleText(textForSelect);
+        log.trace(textForSelect + " was selected from DD menu.");
     }
 
 }

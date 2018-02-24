@@ -48,13 +48,13 @@ public class PositiveLogin
     @Test
     public void ValidLogin ()
     {
-        loginPage.OpenLoginPage("http://v3.qalight.com.ua/login");
+        loginPage.OpenLoginPage();
         loginPage.InputLogin("Student");
         loginPage.InputPass("909090");
         loginPage.ClickSubmitButton();
         log.trace(driver.getTitle());
         String expectedTitle = "Учет запчастей";
-        homePage.CompareTitle(expectedTitle);
+        homePage.CheckTitle(expectedTitle);
     }
 
 
