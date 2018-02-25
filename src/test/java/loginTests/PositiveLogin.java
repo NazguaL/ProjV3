@@ -12,6 +12,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.HomePage;
 import pages.LoginPage;
+import parentTest.ParentTest;
 
 // import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -19,8 +20,14 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by User on 18.02.2018.
  */
-public class PositiveLogin
+public class PositiveLogin extends ParentTest
 {
+    public PositiveLogin(String browser)
+    {
+        super(browser);
+    }
+
+    /*
     WebDriver driver;
     //WebDriverWait wait;
     Logger log;
@@ -28,8 +35,9 @@ public class PositiveLogin
     HomePage homePage;
     ExceptionHelper exceptionHelper;
     DriverInitiator driverInitiator;
+    */
 
-    @Before
+    /*@Before
     public void Setup ()
     {
         //File fileFF = new File("./drivers/chromedriver.exe");
@@ -44,6 +52,7 @@ public class PositiveLogin
         exceptionHelper = new ExceptionHelper();
         homePage = new HomePage(driver);
     }
+    */
 
     @Test
     public void ValidLogin ()
@@ -53,15 +62,16 @@ public class PositiveLogin
         loginPage.InputPass("909090");
         loginPage.ClickSubmitButton();
         log.trace(driver.getTitle());
-        String expectedTitle = "Учет запчастей";
-        homePage.CheckTitle(expectedTitle);
+        //String expectedTitle = "Учет запчастей";
+        //homePage.CheckTitle(expectedTitle);
+        checkAcceptanceCriteria("Title is not expected", homePage.GetTitle(), "Учет запчастей!!!");
+
     }
 
-
-    @After
+    /*@After
     public void CloseDriver ()
     {
         driver.quit();
     }
-
+    */
 }
