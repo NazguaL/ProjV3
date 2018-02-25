@@ -16,7 +16,6 @@ public class HomePage extends ParentPage
     public HomePage (WebDriver driver)
     {
         super(driver);
-
     }
 
     public void CompareTitle (String expectedTitle)

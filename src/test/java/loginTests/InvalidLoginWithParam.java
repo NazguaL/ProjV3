@@ -28,8 +28,8 @@ public class InvalidLoginWithParam extends ParentTest
     @Parameterized.Parameters
     public static Collection testData(){
         return Arrays.asList(new Object[][]{
-                {"chrome", "student", "906090"},
-                {"chrome","tudent","906090"}
+                {"chrome", "Student", "906090"},
+                {"chrome","tudent","909090"}
         });
     }
 
@@ -37,6 +37,7 @@ public class InvalidLoginWithParam extends ParentTest
     public void InvalidLogin ()
     {
         loginPage.LoginUser(login,pass);
-        checkAcceptanceCriteria("Title is not expected", homePage.GetTitle(), "Account of spare:Авторизация");
+        System.out.println(loginPage.GetTitle());
+        checkAcceptanceCriteria("Title is not expected", loginPage.GetTitle(), "Account of spare:Авторизация");
     }
 }
