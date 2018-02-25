@@ -72,8 +72,8 @@ import static org.hamcrest.CoreMatchers.is;
                     //{"fireFox"}
                         //,
                     {"chrome"}
-                           ,
-                      { "iedriver" }
+                           //,
+                      //{ "iedriver" }
 //                ,
 //                    { "opera" }
 //                ,
