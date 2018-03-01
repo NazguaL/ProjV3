@@ -9,17 +9,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.io.IOException;
+
 /**
  * Created by User on 18.02.2018.
  */
 public class LoginPage extends ParentPage
 {
-
+    String BaseUrl;
     /*Locators:*/
-    //By loginNameInput = By.xpath("//*[@name='_username']");
-    //By loginPassInput = By.xpath(".//*[@id='password']");
-    //String loginSubmitButtonInputXpath = "//*[@type='submit']";
-    //By loginSubmitButtonInput = By.xpath("//*[@type='submit']");
 
     @FindBy(name="_username")
     WebElement loginNameInput;
@@ -36,50 +34,26 @@ public class LoginPage extends ParentPage
         super(driver);
     }
 
-    public void OpenLoginPage ()
-    {
-        try
-        {
-            driver.get(ConfigData.getCfgValue("base_url") + "/login");
-            log.trace("Page is opened");
+    public void OpenLoginPage() {
+
+        try {
+            BaseUrl = ConfigData.getCfgValue("base_url");
+        } catch (IOException e) {
+            exceptionHelper.ExceptionLogger("Can not get base URL from config!", e);
         }
-        catch (Exception e)
-        {
-            exceptionHelper.ExceptionLogger("Can not open login page!", e);
-        }
+        actionsWithWebElements.OpenPage(BaseUrl + "/login");
     }
 
-    public void InputLogin (String login)
-    {
-        try
-        {
-            actionsWithWebElements.InputToTextField(loginNameInput, login);
-        } catch (Exception e)
-        {
-            exceptionHelper.ExceptionLogger("Can not fill login!", e);
-        }
+    public void InputLogin(String login) {
+        actionsWithWebElements.InputToTextField(loginNameInput, login);
     }
 
-    public void InputPass (String pass)
-    {
-        try
-        {
-            actionsWithWebElements.InputToTextField(loginPassInput, pass);
-        } catch (Exception e)
-        {
-            exceptionHelper.ExceptionLogger("Can not fill password!", e);
-        }
+    public void InputPass(String pass) {
+        actionsWithWebElements.InputToTextField(loginPassInput, pass);
     }
 
-    public void ClickSubmitButton ()
-    {
-        try
-        {
-            actionsWithWebElements.ClickOnButton(loginSubmitButtonInput);
-        } catch (Exception e)
-        {
-            exceptionHelper.ExceptionLogger("Can not click on \"Submit\" button!", e);
-        }
+    public void ClickSubmitButton() {
+        actionsWithWebElements.ClickOnElement(loginSubmitButtonInput);
     }
 
     public void LoginUser (String login, String pass)

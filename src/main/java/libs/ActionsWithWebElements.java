@@ -13,31 +13,62 @@ public class ActionsWithWebElements
 {
     WebDriver driver;
     Logger log;
+    ExceptionHelper exceptionHelper;
+    String ExceptionTextToLog;
 
     public ActionsWithWebElements  (WebDriver driver)
     {
         this.driver = driver;
         log = Logger.getLogger(getClass());
+        exceptionHelper = new ExceptionHelper();
+    }
+
+    public void OpenPage (String Url)
+    {
+        try
+        {
+            driver.get(Url);
+            log.trace("Page with URL: \'" + Url + "\' opened.");
+        }
+        catch (Exception e)
+        {
+            exceptionHelper.ExceptionLogger("Can not open Page with URL: \'" + Url + "\'!", e);
+        }
     }
 
     public String Title ()
     {
         String title =  driver.getTitle();
-        log.trace("Title is: " + title);
-        return title;
+        try {
+            log.trace("Title is: " + title);
+            return title;
+        } catch (Exception e) {
+            ExceptionTextToLog  = "Can not get page title!";
+            exceptionHelper.ExceptionLogger(ExceptionTextToLog, e);
+            return null;
+        }
     }
 
-    public void InputToTextField (WebElement element, String value) throws Exception
+    public void InputToTextField (WebElement element, String value)
     {
-        element.clear();
-        element.sendKeys(value);
-        log.trace(value + " is filled to element: " + element);
+        try {
+            element.clear();
+            element.sendKeys(value);
+            log.trace(value + " filled to element: " + element);
+        } catch (Exception e) {
+            ExceptionTextToLog  = "Can not fill value \'" + value + "\' to element: " + element;
+            exceptionHelper.ExceptionLogger(ExceptionTextToLog, e);
+        }
     }
 
-    public void ClickOnButton (WebElement button) throws Exception
-    {
-        button.click();
-        log.trace("Clicked on button: " + button);
+    public void ClickOnElement (WebElement element) {
+        try {
+            element.click();
+            log.trace("Clicked on element: " + element);
+        } catch (Exception e) {
+            ExceptionTextToLog  = "Can not click on element: " + element;
+            exceptionHelper.ExceptionLogger(ExceptionTextToLog, e);
+        }
     }
 
     public void SelectACheckbox(By checkbox) throws Exception {

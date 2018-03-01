@@ -48,7 +48,8 @@ import static org.hamcrest.CoreMatchers.is;
         //public TypeSdelkiPage typeSdelkiPage;
         //public EditTypeSdelkiPage editTypeSdelkiPage;
         private Utils utils = new Utils();
-        private boolean isTestPass = false;
+        private boolean isTestCompleted = false;
+        private String ScreenShotNamePostfix;
         private String pathToScreenShot;
         private String browser;
 
@@ -87,11 +88,11 @@ import static org.hamcrest.CoreMatchers.is;
 
         @Before
         public void setUp() {
-            pathToScreenShot = "..\\ProjV3\\target\\screenshot\\" + this.getClass().getPackage().getName() + "\\" + this.getClass().getSimpleName()
-                    + this.testName.getMethodName() + browser + ".jpg";
+   pathToScreenShot = "..\\ProjV3\\target\\screenshot\\" + this.getClass().getPackage().getName() + "\\" + this.getClass().getSimpleName()
+         + this.testName.getMethodName() + browser + ScreenShotNamePostfix + ".jpg";
 
             if ("chrome".equals(browser)) {
-                log.info("Chrome will be started");
+                log.info("Chrome is starting");
                 File fileFF = new File("./drivers/chromedriver.exe");
                 System.setProperty("webdriver.chrome.driver", fileFF.getAbsolutePath());
                 driver = new ChromeDriver();
@@ -137,29 +138,32 @@ import static org.hamcrest.CoreMatchers.is;
         }
 
         @After
-        public void tearDown() {
-            if (!isTestPass){
-                utils.screenShot(pathToScreenShot, driver);
-            }
+
+
+        public void tearDown()
+        {
+            if (isTestCompleted) utils.screenShot(pathToScreenShot, driver);
             driver.quit();
         }
 
         protected void checkAcceptanceCriteria(String message, boolean actual, boolean expected){
             if (actual != expected)
             {
+                ScreenShotNamePostfix = "AcceptanceCriteriaMismatched";
                 utils.screenShot(pathToScreenShot, driver);
             }
             Assert.assertThat(message, actual, is (expected));
-            isTestPass = true;
+            isTestCompleted = true;
         }
 
         protected void checkAcceptanceCriteria(String message, String actual, String expected){
             if (!actual.equals(expected))
             {
+                ScreenShotNamePostfix = "AcceptanceCriteriaMismatched";
                 utils.screenShot(pathToScreenShot, driver);
             }
             Assert.assertThat(message, actual, is (expected));
-            isTestPass = true;
+            isTestCompleted = true;
         }
 
 }

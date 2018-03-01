@@ -23,7 +23,8 @@ public class Utils
      * @param pathToScreenShot
      * @param driver
      */
-    public void screenShot(String pathToScreenShot, WebDriver driver){
+    public void screenShot(String pathToScreenShot, WebDriver driver)
+    {
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         try {
             FileUtils.copyFile(scrFile, new File(pathToScreenShot));

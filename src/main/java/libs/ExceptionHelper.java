@@ -20,7 +20,7 @@ public class ExceptionHelper
         log.error(text);
         //String stackTrace = org.apache.commons.lang.exception.ExceptionUtils.getStackTrace(e);
         String stackTrace = ExceptionUtils.getStackTrace(e);
-        log.error("Exception:" + stackTrace);
+        log.error("Exception: " + stackTrace);
     }
 
 }
