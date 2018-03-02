@@ -28,6 +28,16 @@ public class LoginPage extends ParentPage
     @FindBy(xpath = "//*[@type='submit']")
     WebElement loginSubmitButtonInput;
 
+    /*
+    @FindBy(xpath = ".//*[@placeholder='Login']")
+    WebElement loginNameInput;
+
+    @FindBy(xpath = ".//*[@placeholder='Password']")
+    WebElement loginPassInput;
+
+    @FindBy(xpath = ".//*[@type='submit']")
+    WebElement loginSubmitButtonInput;
+    */
 
     public LoginPage (WebDriver driver)
     {

@@ -14,11 +14,11 @@ import java.util.Collection;
 
 @RunWith(value = Parameterized.class)
 
-public class InvalidLoginWithParam extends ParentTest
+public class InvalidLogin extends ParentTest
 {
     String login, pass;
 
-    public InvalidLoginWithParam (String browser, String login, String pass)
+    public InvalidLogin(String browser, String login, String pass)
     {
         super(browser);
         this.login = login;
@@ -27,9 +27,10 @@ public class InvalidLoginWithParam extends ParentTest
 
     @Parameterized.Parameters
     public static Collection testData(){
-        return Arrays.asList(new Object[][]{
-                {"chrome", "Student", "906090"},
-                {"chrome","tudent","909090"}
+        return Arrays.asList(new Object[][]
+        {
+         {"chrome", "Student", "906090"},
+         {"chrome","tudent","909090"}
         });
     }
 
@@ -38,6 +39,6 @@ public class InvalidLoginWithParam extends ParentTest
     {
         loginPage.LoginUser(login,pass);
         System.out.println(loginPage.GetTitle());
-        checkAcceptanceCriteria("Title is not expected", loginPage.GetTitle(), "Account of spare:Авторизацияzzz");
+        checkAcceptanceCriteria("Title is not expected", loginPage.GetTitle(), "Account of spare:Авторизация");
     }
 }

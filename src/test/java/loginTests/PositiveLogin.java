@@ -7,6 +7,8 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -15,63 +17,50 @@ import pages.LoginPage;
 import parentTest.ParentTest;
 
 // import java.io.File;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.concurrent.TimeUnit;
 
 /**
  * Created by User on 18.02.2018.
  */
+
+@RunWith(value = Parameterized.class)
+
 public class PositiveLogin extends ParentTest
 {
-    public PositiveLogin(String browser)
+    String login, pass;
+
+    public PositiveLogin (String browser, String login, String pass)
     {
         super(browser);
+        this.login = login;
+        this.pass = pass;
     }
 
-    /*
-    WebDriver driver;
-    //WebDriverWait wait;
-    Logger log;
-    LoginPage loginPage;
-    HomePage homePage;
-    ExceptionHelper exceptionHelper;
-    DriverInitiator driverInitiator;
-    */
-
-    /*@Before
-    public void Setup ()
+    @Parameterized.Parameters
+    public static Collection testData()
     {
-        //File fileFF = new File("./drivers/chromedriver.exe");
-        //System.setProperty("webdriver.chrome.driver", fileFF.getAbsolutePath());
-        //driver = new ChromeDriver();
-        //wait = new WebDriverWait(driver, 10);
-        driverInitiator = new DriverInitiator();
-        this.driver = driverInitiator.StartCromeDriver();
-        log = Logger.getLogger(getClass());
-        //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        loginPage = new LoginPage(driver);
-        exceptionHelper = new ExceptionHelper();
-        homePage = new HomePage(driver);
+        return Arrays.asList(new Object[][]
+                {
+                        {"chrome", "Student", "909090"},
+                        {"fireFox","Student","909090"}
+                });
     }
-    */
+
+
 
     @Test
     public void ValidLogin ()
     {
         loginPage.OpenLoginPage();
-        loginPage.InputLogin("Student");
-        loginPage.InputPass("909090");
+        loginPage.InputLogin(login);
+        loginPage.InputPass(pass);
         loginPage.ClickSubmitButton();
         log.trace(driver.getTitle());
         //String expectedTitle = "Учет запчастей";
         //homePage.CheckTitle(expectedTitle);
-        checkAcceptanceCriteria("Title is not expected", homePage.GetTitle(), "Учет запчастей!!!");
+        checkAcceptanceCriteria("Title is not expected", homePage.GetTitle(), "Учет запчастей");
 
     }
-
-    /*@After
-    public void CloseDriver ()
-    {
-        driver.quit();
-    }
-    */
 }

@@ -2,6 +2,7 @@ package parentTest;
 
 //import Pages.*;
 //import libs.ExcelDriver;
+import libs.DriverInitiator;
 import libs.Utils;
 import org.apache.log4j.Logger;
 import org.junit.After;
@@ -39,6 +40,7 @@ import static org.hamcrest.CoreMatchers.is;
         public Logger log;
         public LoginPage loginPage;
         public HomePage homePage;
+        public DriverInitiator driverInitiator;
        // public SdelkiListPage sdelkiListPage;
        // public EditSdelkiPage editSdelkiPage;
        // public SparePage sparePage;
@@ -53,13 +55,15 @@ import static org.hamcrest.CoreMatchers.is;
         private String pathToScreenShot;
         private String browser;
 
+
         //public ExcelDriver excelDriver;
 
         @Rule
         public TestName testName = new TestName();
         //The TestName Rule makes the current test name available inside test methods.
 
-        public ParentTest(String browser) {
+        public ParentTest(String browser)
+        {
             this.browser = browser;
             log = Logger.getLogger(getClass());
         }
@@ -70,8 +74,8 @@ import static org.hamcrest.CoreMatchers.is;
         // http://www.quizful.net/post/parameterized-junit-tests
         public static Collection testData() throws IOException {
             return Arrays.asList(new Object[][]{
-                    //{"fireFox"}
-                        //,
+                    {"fireFox"}
+                        ,
                     {"chrome"}
                            //,
                       //{ "iedriver" }
@@ -87,9 +91,13 @@ import static org.hamcrest.CoreMatchers.is;
 
 
         @Before
-        public void setUp() {
-   pathToScreenShot = "..\\ProjV3\\target\\screenshot\\" + this.getClass().getPackage().getName() + "\\" + this.getClass().getSimpleName()
-         + this.testName.getMethodName() + browser + ScreenShotNamePostfix + ".jpg";
+        public void setUp()
+        {
+            pathToScreenShot = "..\\ProjV3\\target\\screenshot\\" + this.getClass().getPackage().getName() + "\\" + this.getClass().getSimpleName()
+            + this.testName.getMethodName() + browser + ".jpg";
+
+            // driverInitiator = new DriverInitiator();
+           // this.driver = driverInitiator.StartDriver(browser);
 
             if ("chrome".equals(browser)) {
                 log.info("Chrome is starting");
@@ -108,16 +116,21 @@ import static org.hamcrest.CoreMatchers.is;
                 driver = new InternetExplorerDriver();
                 log.info(" IE is started");
             } else if ("fireFox".equals(browser)) {
-                log.info("FireFox will be started");
+                /*log.info("FireFox will be started");
                 File fileFF = new File("./drivers/geckodriver.exe");
                 System.setProperty("webdriver.gecko.driver", fileFF.getAbsolutePath());
                 FirefoxProfile profile = new FirefoxProfile();
                 profile.setPreference("browser.startup.page", 0); // Empty start page
                 profile.setPreference("browser.startup.homepage_override.mstone", "ignore"); // Suppress the "What's new" page
                 driver = new FirefoxDriver();
-                log.info(" FireFox is started");
-
+                log.info(" FireFox is started");*/
+                DesiredCapabilities caps = new DesiredCapabilities();
+                caps.setCapability(FirefoxDriver.MARIONETTE, false);
+                driver = new FirefoxDriver(caps);
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                log.trace("FirefoxDriver initiated.");
             }
+
 
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
@@ -142,7 +155,7 @@ import static org.hamcrest.CoreMatchers.is;
 
         public void tearDown()
         {
-            if (isTestCompleted) utils.screenShot(pathToScreenShot, driver);
+            utils.screenShot(pathToScreenShot, driver);
             driver.quit();
         }
 
