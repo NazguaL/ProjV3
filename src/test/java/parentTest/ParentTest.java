@@ -3,6 +3,7 @@ package parentTest;
 //import Pages.*;
 //import libs.ExcelDriver;
 import libs.DriverInitiator;
+import libs.ExcelDriver;
 import libs.Utils;
 import org.apache.log4j.Logger;
 import org.junit.After;
@@ -56,7 +57,7 @@ import static org.hamcrest.CoreMatchers.is;
         private String browser;
 
 
-        //public ExcelDriver excelDriver;
+        public ExcelDriver excelDriver;
 
         @Rule
         public TestName testName = new TestName();
@@ -96,9 +97,9 @@ import static org.hamcrest.CoreMatchers.is;
             pathToScreenShot = "..\\ProjV3\\target\\screenshot\\" + this.getClass().getPackage().getName() + "\\" + this.getClass().getSimpleName()
             + this.testName.getMethodName() + browser + ".jpg";
 
-            // driverInitiator = new DriverInitiator();
-           // this.driver = driverInitiator.StartDriver(browser);
-
+            driverInitiator = new DriverInitiator();
+            driver = driverInitiator.StartDriver(browser);
+/*
             if ("chrome".equals(browser)) {
                 log.info("Chrome is starting");
                 File fileFF = new File("./drivers/chromedriver.exe");
@@ -124,13 +125,13 @@ import static org.hamcrest.CoreMatchers.is;
                 profile.setPreference("browser.startup.homepage_override.mstone", "ignore"); // Suppress the "What's new" page
                 driver = new FirefoxDriver();
                 log.info(" FireFox is started");*/
-                DesiredCapabilities caps = new DesiredCapabilities();
+/*                DesiredCapabilities caps = new DesiredCapabilities();
                 caps.setCapability(FirefoxDriver.MARIONETTE, false);
                 driver = new FirefoxDriver(caps);
                 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 log.trace("FirefoxDriver initiated.");
             }
-
+*/
 
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
@@ -145,7 +146,7 @@ import static org.hamcrest.CoreMatchers.is;
            // typeSdelkiPage = new TypeSdelkiPage(driver);
            // editTypeSdelkiPage = new EditTypeSdelkiPage(driver);
 
-            //excelDriver = new ExcelDriver();
+            excelDriver = new ExcelDriver();
 
 
         }

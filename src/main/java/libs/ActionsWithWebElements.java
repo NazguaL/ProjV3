@@ -4,7 +4,9 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Created by User on 18.02.2018.
@@ -15,12 +17,14 @@ public class ActionsWithWebElements
     Logger log;
     ExceptionHelper exceptionHelper;
     String ExceptionTextToLog;
+    WebDriverWait webDriverWait20;
 
     public ActionsWithWebElements  (WebDriver driver)
     {
         this.driver = driver;
         log = Logger.getLogger(getClass());
         exceptionHelper = new ExceptionHelper();
+        webDriverWait20 = new WebDriverWait(driver, 20);
     }
 
     public void OpenPage (String Url)
@@ -63,6 +67,7 @@ public class ActionsWithWebElements
 
     public void ClickOnElement (WebElement element) {
         try {
+            // webDriverWait20.until(ExpectedConditions.visibilityOf(element));
             element.click();
             log.trace("Clicked on element: " + element);
         } catch (Exception e) {
