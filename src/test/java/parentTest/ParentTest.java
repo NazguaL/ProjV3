@@ -75,8 +75,8 @@ import static org.hamcrest.CoreMatchers.is;
         // http://www.quizful.net/post/parameterized-junit-tests
         public static Collection testData() throws IOException {
             return Arrays.asList(new Object[][]{
-                    {"fireFox"}
-                        ,
+                    // {"fireFox"}
+                        //,
                     {"chrome"}
                            //,
                       //{ "iedriver" }

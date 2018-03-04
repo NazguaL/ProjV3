@@ -38,7 +38,6 @@ public class InvalidLogin extends ParentTest
     public void InvalidLogin ()
     {
         loginPage.LoginUser(login,pass);
-        System.out.println(loginPage.GetTitle());
         checkAcceptanceCriteria("Title is not expected", loginPage.GetTitle(), "Account of spare:Авторизация");
     }
 }

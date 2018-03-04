@@ -42,7 +42,7 @@ public class DriverInitiator
     {
 
         if ("chrome".equals(browser)) {
-    log.info("Chrome is starting");
+    //log.info("Chrome is starting");
     File fileFF = new File("./drivers/chromedriver.exe");
     System.setProperty("webdriver.chrome.driver", fileFF.getAbsolutePath());
     driver  = new ChromeDriver();
