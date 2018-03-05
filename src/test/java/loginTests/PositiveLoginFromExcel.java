@@ -23,10 +23,6 @@ public class PositiveLoginFromExcel extends ParentTest {
     {
         String excelDataFile = ConfigData.getCfgValue("DATA_FILE");
         Map dataFromExcelFileForLogin = excelDriver.getData(excelDataFile, "validLogOn");
-        /*loginPage.OpenLoginPage();
-        loginPage.InputLogin(dataFromExcelFileForLogin.get("login").toString());
-        loginPage.InputPass(dataFromExcelFileForLogin.get("pass").toString());
-        loginPage.ClickSubmitButton();*/
         loginPage.LoginUser((dataFromExcelFileForLogin.get("login").toString()),(dataFromExcelFileForLogin.get("pass").toString()));
         checkAcceptanceCriteria("Title is not expected", homePage.GetTitle(), "Учет запчастей");
     }

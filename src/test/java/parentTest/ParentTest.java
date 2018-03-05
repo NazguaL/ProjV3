@@ -55,8 +55,6 @@ import static org.hamcrest.CoreMatchers.is;
         private String ScreenShotNamePostfix;
         private String pathToScreenShot;
         private String browser;
-
-
         public ExcelDriver excelDriver;
 
         @Rule
@@ -75,13 +73,13 @@ import static org.hamcrest.CoreMatchers.is;
         // http://www.quizful.net/post/parameterized-junit-tests
         public static Collection testData() throws IOException {
             return Arrays.asList(new Object[][]{
-                    // {"fireFox"}
-                        //,
-                    {"chrome"}
+                    //{"FireFox"}
+                      // ,
+                 // {"Chrome"}
                            //,
-                      //{ "iedriver" }
+                      //{ "IEdriver" }
 //                ,
-//                    { "opera" }
+                    { "Opera" }
 //                ,
 //                {"phantomJs"}
 //                ,
@@ -98,40 +96,25 @@ import static org.hamcrest.CoreMatchers.is;
             + this.testName.getMethodName() + browser + ".jpg";
 
             driverInitiator = new DriverInitiator();
-            driver = driverInitiator.StartDriver(browser);
-/*
-            if ("chrome".equals(browser)) {
-                log.info("Chrome is starting");
-                File fileFF = new File("./drivers/chromedriver.exe");
-                System.setProperty("webdriver.chrome.driver", fileFF.getAbsolutePath());
-                driver = new ChromeDriver();
-                log.info("Chrome is started");
-            }else if ("iedriver".equals(browser)) {
-                log.info("IE will be started");
-                File file1 = new File("./drivers/IEDriverServer.exe");
-                System.setProperty("webdriver.ie.driver", file1.getAbsolutePath());
-                DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
-                capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
-                capabilities.setCapability("ignoreZoomSetting", true);
-                capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-                driver = new InternetExplorerDriver();
-                log.info(" IE is started");
-            } else if ("fireFox".equals(browser)) {
-                /*log.info("FireFox will be started");
-                File fileFF = new File("./drivers/geckodriver.exe");
-                System.setProperty("webdriver.gecko.driver", fileFF.getAbsolutePath());
-                FirefoxProfile profile = new FirefoxProfile();
-                profile.setPreference("browser.startup.page", 0); // Empty start page
-                profile.setPreference("browser.startup.homepage_override.mstone", "ignore"); // Suppress the "What's new" page
-                driver = new FirefoxDriver();
-                log.info(" FireFox is started");*/
-/*                DesiredCapabilities caps = new DesiredCapabilities();
-                caps.setCapability(FirefoxDriver.MARIONETTE, false);
-                driver = new FirefoxDriver(caps);
-                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-                log.trace("FirefoxDriver initiated.");
+
+            switch (browser) {
+                case "Chrome":
+                    log.trace("ChromeDriver initiation requested.");
+                    this.driver = driverInitiator.StartChromeDriver();
+                    break;
+                case "FireFox":
+                    log.trace("FirefoxDriver initiation requested.");
+                    this.driver = driverInitiator.StartFirefoxDriver ();
+                    break;
+                case "IEdriver":
+                    log.trace("IEDriver initiation requested.");
+                    this.driver = driverInitiator.StartIEDriver();
+                    break;
+                case "Opera":
+                    log.trace("OperaeDriver initiation requested.");
+                    this.driver = driverInitiator.StartOperaDriver();
+                    break;
             }
-*/
 
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 

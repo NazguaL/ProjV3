@@ -29,8 +29,10 @@ public class InvalidLogin extends ParentTest
     public static Collection testData(){
         return Arrays.asList(new Object[][]
         {
-         {"chrome", "Student", "906090"},
-         {"chrome","tudent","909090"}
+         {"Chrome", "Student", "906090"},
+         {"Chrome","tudent","909090"},
+         {"FireFox", "Student", "906090"},
+         {"FireFox","tudent","909090"}
         });
     }
 
