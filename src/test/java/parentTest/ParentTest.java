@@ -92,7 +92,7 @@ import static org.hamcrest.CoreMatchers.is;
         @Before
         public void setUp()
         {
-            pathToScreenShot = "..\\ProjV3\\target\\screenshot\\" + this.getClass().getPackage().getName() + "\\" + this.getClass().getSimpleName()
+            pathToScreenShot = ".\\target\\screenshots\\" + this.getClass().getPackage().getName() + "\\" + this.getClass().getSimpleName()
             + this.testName.getMethodName() + browser + ".jpg";
 
             driverInitiator = new DriverInitiator();
@@ -141,6 +141,7 @@ import static org.hamcrest.CoreMatchers.is;
         {
             utils.screenShot(pathToScreenShot, driver);
             driver.quit();
+            driver = null;
         }
 
         protected void checkAcceptanceCriteria(String message, boolean actual, boolean expected){

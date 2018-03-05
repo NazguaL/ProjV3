@@ -51,7 +51,6 @@ public class DriverInitiator
         capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
         driver = new InternetExplorerDriver(capabilities);
         log.trace("IEDriver initiated.");
-
         return driver;
     }
 

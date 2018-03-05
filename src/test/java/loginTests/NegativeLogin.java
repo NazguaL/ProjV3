@@ -14,11 +14,11 @@ import java.util.Collection;
 
 @RunWith(value = Parameterized.class)
 
-public class InvalidLogin extends ParentTest
+public class NegativeLogin extends ParentTest
 {
     String login, pass;
 
-    public InvalidLogin(String browser, String login, String pass)
+    public NegativeLogin(String browser, String login, String pass)
     {
         super(browser);
         this.login = login;
@@ -29,10 +29,12 @@ public class InvalidLogin extends ParentTest
     public static Collection testData(){
         return Arrays.asList(new Object[][]
         {
-         {"Chrome", "Student", "906090"},
-         {"Chrome","tudent","909090"},
-         {"FireFox", "Student", "906090"},
-         {"FireFox","tudent","909090"}
+                {"Chrome", "Student", "906090"},
+                {"Chrome","tudent","909090"},
+                {"Chrome","","909090"},
+                {"Chrome","Student",""},
+                {"FireFox", "Student", "906090"},
+                {"FireFox","tudent","909090"}
         });
     }
 
