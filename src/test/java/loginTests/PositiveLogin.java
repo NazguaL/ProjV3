@@ -43,8 +43,9 @@ public class PositiveLogin extends ParentTest
     {
         return Arrays.asList(new Object[][]
                 {
-                        {"Chrome", "Student", "909090"},
-                        {"FireFox","Student","909090"}
+                        {"Chrome", "Student", "909090"}
+                        //,
+                        //{"FireFox","Student","909090"}
                 });
     }
 

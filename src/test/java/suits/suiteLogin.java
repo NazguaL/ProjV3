@@ -1,6 +1,7 @@
 package suits;
 
 import loginTests.NegativeLogin;
+import loginTests.NegativeLoginWithParamWithDataFromExcel;
 import loginTests.PositiveLogin;
 import loginTests.PositiveLoginFromExcel;
 import org.junit.runner.RunWith;
@@ -11,7 +12,13 @@ import org.junit.runners.Suite;
  */
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({PositiveLogin.class, NegativeLogin.class, PositiveLoginFromExcel.class} )
+@Suite.SuiteClasses
+        ({
+        NegativeLogin.class,
+        PositiveLogin.class,
+        NegativeLoginWithParamWithDataFromExcel.class,
+        PositiveLoginFromExcel.class
+})
 
 public class suiteLogin {
 }

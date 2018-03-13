@@ -32,9 +32,7 @@ public class NegativeLogin extends ParentTest
                 {"Chrome", "Student", "906090"},
                 {"Chrome","tudent","909090"},
                 {"Chrome","","909090"},
-                {"Chrome","Student",""},
-                {"FireFox", "Student", "906090"},
-                {"FireFox","tudent","909090"}
+                {"Chrome","Student",""}
         });
     }
 

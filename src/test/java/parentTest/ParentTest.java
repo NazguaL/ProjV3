@@ -75,11 +75,11 @@ import static org.hamcrest.CoreMatchers.is;
             return Arrays.asList(new Object[][]{
                     //{"FireFox"}
                       // ,
-                 // {"Chrome"}
+                 {"Chrome"}
                            //,
                       //{ "IEdriver" }
 //                ,
-                    { "Opera" }
+                    //{ "Opera" }
 //                ,
 //                {"phantomJs"}
 //                ,
