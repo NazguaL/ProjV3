@@ -115,6 +115,7 @@ public class ActionsWithWebElements
 
     public boolean IsElementPresent (WebElement element)
     {
+        log.trace("radiobutton: " + element + " IsSelected: " + element.isSelected());
         return element.isDisplayed() && element.isEnabled();
     }
 
