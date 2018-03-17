@@ -10,6 +10,10 @@ import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.opera.OperaOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * Created by User on 21.02.2018.
@@ -63,4 +67,19 @@ public class DriverInitiator
         return driver;
     }
 
+    public WebDriver StartRemoteDriver ()
+
+    {
+
+        try {
+            driver = new RemoteWebDriver(
+                    new URL("http://localhost:4444/wd/hub"),
+                    DesiredCapabilities.chrome());
+            return driver;
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
 }
