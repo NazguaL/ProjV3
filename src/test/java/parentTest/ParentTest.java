@@ -111,8 +111,12 @@ import static org.hamcrest.CoreMatchers.is;
                     this.driver = driverInitiator.StartIEDriver();
                     break;
                 case "Opera":
-                    log.trace("OperaeDriver initiation requested.");
+                    log.trace("OperaDriver initiation requested.");
                     this.driver = driverInitiator.StartOperaDriver();
+                    break;
+                case "Remote":
+                    log.trace("RemoteDriver initiation requested.");
+                    this.driver = driverInitiator.StartRemoteDriver();
                     break;
             }
 
